@@ -28,21 +28,21 @@ fn play_sprinting_effect(
     config: Res<GameConfig>,
 ) {
     for (player_transform, grounded, velocity) in with_player.iter() {
-        let horizontal_speed_squared = velocity
-            .linvel
-            .split(player_transform.up())
-            .horizontal
-            .length_squared();
-        for (mut particle_transform, mut effect) in with_particle.iter_mut() {
-            let threshold = config.player.sprint_effect_speed_threshold;
-            if grounded.0 && horizontal_speed_squared > threshold.squared() {
-                let translation = player_transform.translation
-                    - player_transform.up() * (player::HEIGHT / 2. + player::RADIUS);
-                *particle_transform = player_transform.with_translation(translation);
-                effect.maybe_spawner().unwrap().set_active(true);
-            } else {
-                effect.maybe_spawner().unwrap().set_active(false);
-            }
-        }
+        // let horizontal_speed_squared = velocity
+        //     .linvel
+        //     .split(player_transform.up())
+        //     .horizontal
+        //     .length_squared();
+        // for (mut particle_transform, mut effect) in with_particle.iter_mut() {
+        //     let threshold = config.player.sprint_effect_speed_threshold;
+        //     if grounded.0 && horizontal_speed_squared > threshold.squared() {
+        //         let translation = player_transform.translation
+        //             - player_transform.up() * (player::HEIGHT / 2. + player::RADIUS);
+        //         *particle_transform = player_transform.with_translation(translation);
+        //         effect.maybe_spawner().unwrap().set_active(true);
+        //     } else {
+        //         effect.maybe_spawner().unwrap().set_active(false);
+        //     }
+        // }
     }
 }
